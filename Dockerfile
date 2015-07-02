@@ -18,7 +18,7 @@ RUN apt-get update -qq && apt-get install -qqy \
     ca-certificates \
     curl \
     lxc \
-    iptables
+    iptables 
     
 # Install Docker from Docker Inc. repositories.
 RUN curl -sSL https://get.docker.com/ubuntu/ | sh
@@ -32,6 +32,8 @@ VOLUME /var/lib/docker
 # group. Needed to access the docker daemon's unix socket.
 RUN usermod -a -G docker jenkins
 
+#Install git
+RUN apt-get install -y git
 
 # place the jenkins slave startup script into the container
 ADD jenkins-slave-startup.sh /
